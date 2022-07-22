@@ -109,11 +109,6 @@ install_XrayR() {
     cd /usr/local/XrayR/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/f2xx/XrayR-1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-        if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}检测 XrayR 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 XrayR 版本安装${plain}"
-            exit 1
-        fi
         echo -e "检测到 XrayR 最新版本：${last_version}，开始安装"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://xf.gl/XrayR0.80-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
